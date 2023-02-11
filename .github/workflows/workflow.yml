@@ -35,9 +35,5 @@ jobs:
         with:
           node-version: 18
       - uses: ./.github/actions/install
-      - name: Prettier
-        run: npx prettier -c .
-      - name: ESLint
-        run: npx eslint
-      - name: Vitest
-        run: npx vitest --run --coverage
+      - name: Turbo CI
+        run: npx turbo --continue --single-package ci

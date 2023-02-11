@@ -1,1 +1,1 @@
-export * from './cubit'
+export * from './cubit';

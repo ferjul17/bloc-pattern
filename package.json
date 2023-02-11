@@ -1,0 +1,35 @@
+{
+  "name": "bloc-pattern",
+  "version": "0.0.1",
+  "description": "Bloc Pattern is an package that makes it easier to implement the BLoC (Business Logic Components) pattern in your applications. It provides a clear architecture for managing state and updating data in your applications.",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/bloc-pattern.umd.js",
+  "module": "./dist/bloc-pattern.es.js",
+  "exports": {
+    ".": {
+      "import": "./dist/bloc-pattern.es.js",
+      "require": "./dist/bloc-pattern.umd.js"
+    }
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "vitest"
+  },
+  "devDependencies": {
+    "@tsconfig/strictest": "^1.0.2",
+    "@typescript-eslint/eslint-plugin": "^5.51.0",
+    "@typescript-eslint/parser": "^5.51.0",
+    "eslint": "^8.34.0",
+    "prettier": "^2.8.4",
+    "typescript": "^4.9.5",
+    "vite": "^4.1.1",
+    "vitest": "^0.28.4"
+  },
+  "dependencies": {
+    "rxjs": "^7.8.0"
+  }
+}

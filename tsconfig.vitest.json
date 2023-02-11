@@ -1,0 +1,8 @@
+{
+  "extends": "@tsconfig/strictest",
+  "include": ["src/**/*.ts"],
+  "compilerOptions": {
+    "noEmit": true,
+    "types": ["vitest/globals"]
+  }
+}

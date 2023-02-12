@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { Cubit } from './cubit';
-import { lastValueFrom, toArray } from 'rxjs';
+import { lastValueFrom, tap, toArray } from 'rxjs';
 
 class TestCubit extends Cubit<number> {
   public override emit(
@@ -44,7 +44,7 @@ describe('Cubit', function () {
   });
 
   it('should trigger onChange when a new state is emitted', async () => {
-    const onChange = vi.spyOn(cubit, 'onChange').mockReturnThis();
+    const onChange = vi.spyOn(cubit, 'onChange');
 
     cubit.emit(1);
 
@@ -53,17 +53,7 @@ describe('Cubit', function () {
   });
 
   it('should trigger onError when an error is added', () => {
-    const onError = vi.spyOn(cubit, 'onError').mockReturnThis();
-    const error = new Error('Test error');
-
-    cubit.addError(error);
-
-    expect(onError).toHaveBeenCalledOnce();
-    expect(onError).toHaveBeenCalledWith(error);
-  });
-
-  it('should trigger onError when an error is added', () => {
-    const onError = vi.spyOn(cubit, 'onError').mockReturnThis();
+    const onError = vi.spyOn(cubit, 'onError');
     const error = new Error('Test error');
 
     cubit.addError(error);
@@ -73,11 +63,18 @@ describe('Cubit', function () {
   });
 
   it('should emit values in the stream', async () => {
-    const stream = cubit.stream().pipe(toArray());
+    const promise = (async () => {
+      const values = [];
+      for await (const value of cubit.stream()) {
+        values.push(value);
+      }
+      return values;
+    })();
+
     cubit.emit(1);
     cubit.emit(2);
     cubit.close();
 
-    await expect(lastValueFrom(stream)).resolves.toEqual([0, 1, 2]);
+    await expect(promise).resolves.toEqual([0, 1, 2]);
   });
 });

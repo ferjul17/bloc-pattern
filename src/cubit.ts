@@ -3,12 +3,12 @@ import {
   catchError,
   EMPTY,
   map,
-  Observable,
   pairwise,
   Subscription,
   tap,
 } from 'rxjs';
 import type { Change } from './change';
+import otag from 'observable-to-async-generator';
 
 export class Cubit<STATE> {
   private _state: BehaviorSubject<STATE>;
@@ -52,8 +52,8 @@ export class Cubit<STATE> {
     this._subscription.unsubscribe();
   }
 
-  public stream(): Observable<STATE> {
-    return this._state.asObservable();
+  public stream(): AsyncIterableIterator<STATE> {
+    return otag(this._state.asObservable());
   }
 
   protected onChange(change: Change<STATE>): void;

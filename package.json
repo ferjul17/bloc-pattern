@@ -35,6 +35,7 @@
     "vitest": "^0.28.4"
   },
   "dependencies": {
+    "observable-to-async-generator": "^1.0.4",
     "rxjs": "^7.8.0"
   }
 }

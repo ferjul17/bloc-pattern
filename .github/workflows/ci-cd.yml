@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - build/upgrade-dependencies
     tags:
       - 'v*'
   pull_request:

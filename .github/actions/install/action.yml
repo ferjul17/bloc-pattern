@@ -3,14 +3,19 @@ description: Setup and use node_modules
 runs:
   using: 'composite'
   steps:
+    - name: Use Node.js 18
+      uses: actions/setup-node@v3
+      with:
+        node-version: 18
+        cache: npm
     - name: Use node_modules cache
       uses: actions/cache@v3
       with:
         path: |
           node_modules
         key: ${{ runner.os }}-${{ hashFiles('package-lock.json') }}
-      id: npm-cache
+      id: node_modules-cache
     - name: Install dependencies
       run: npm ci
       shell: bash
-      if: steps.npm-cache.outputs.cache-hit != 'true'
+      if: steps.node_modules-cache.outputs.cache-hit != 'true'

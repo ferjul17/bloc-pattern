@@ -1,5 +1,6 @@
 name: 'Upgrade Dependencies'
 on:
+  workflow_dispatch:
   schedule:
     - cron: '0 10 * * 6' # at 10am on Saturday
 

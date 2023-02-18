@@ -1,6 +1,5 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { Cubit } from './cubit';
-import { lastValueFrom, tap, toArray } from 'rxjs';
 
 class TestCubit extends Cubit<number> {
   public override emit(

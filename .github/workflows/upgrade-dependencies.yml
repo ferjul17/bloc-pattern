@@ -1,0 +1,21 @@
+name: 'Upgrade Dependencies'
+on:
+  schedule:
+    - cron: '0 10 * * 6' # at 10am on Saturday
+
+jobs:
+  upgrade:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/install
+      - name: Upgrade Packages
+        run: npx taze major -i -w
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v3
+        with:
+          base: main
+          branch: build/upgrade-dependencies
+          title: Upgrade dependencies
+          commit-message: 'build: upgrade dependencies'

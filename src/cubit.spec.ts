@@ -1,5 +1,7 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { Cubit } from './cubit';
+import { lastValueFrom, toArray } from 'rxjs';
+import { StateError } from './bloc-base';
 
 class TestCubit extends Cubit<number> {
   public override emit(
@@ -33,13 +35,23 @@ describe('Cubit', function () {
   });
 
   it('should have a state', () => {
-    expect(cubit.state()).toBe(0);
+    expect(cubit.getState()).toBe(0);
   });
 
   it('should emit a new state', () => {
     cubit.emit(1);
 
-    expect(cubit.state()).toBe(1);
+    expect(cubit.getState()).toBe(1);
+  });
+
+  it('should throw an error if the cubit is closed', () => {
+    cubit.close();
+    const onError = vi.spyOn(cubit, 'onError');
+
+    expect(() => cubit.emit(1)).toThrowError(
+      new StateError('Cannot emit new states after calling close'),
+    );
+    expect(onError).not.toHaveBeenCalled();
   });
 
   it('should trigger onChange when a new state is emitted', async () => {
@@ -62,13 +74,7 @@ describe('Cubit', function () {
   });
 
   it('should emit values in the stream', async () => {
-    const promise = (async () => {
-      const values = [];
-      for await (const value of cubit.stream()) {
-        values.push(value);
-      }
-      return values;
-    })();
+    const promise = lastValueFrom(cubit.getStream().pipe(toArray()));
 
     cubit.emit(1);
     cubit.emit(2);

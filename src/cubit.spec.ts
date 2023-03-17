@@ -1,7 +1,8 @@
-import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
-import { Cubit } from './cubit';
 import { lastValueFrom, toArray } from 'rxjs';
-import { StateError } from './bloc-base';
+import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
+
+import { StateError } from './bloc-base.js';
+import { Cubit } from './cubit.js';
 
 class TestCubit extends Cubit<number> {
   public override emit(

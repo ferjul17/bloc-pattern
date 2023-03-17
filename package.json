@@ -1,43 +1,45 @@
 {
+  "type": "module",
   "name": "bloc-pattern",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Bloc Pattern is an package that makes it easier to implement the BLoC (Business Logic Components) pattern in your applications. It provides a clear architecture for managing state and updating data in your applications.",
   "files": [
     "dist"
   ],
-  "main": "./dist/bloc-pattern.umd.js",
-  "module": "./dist/bloc-pattern.es.js",
+  "main": "./dist/index.cjs",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/bloc-pattern.es.js",
-      "require": "./dist/bloc-pattern.umd.js"
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
     }
   },
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview",
-    "test": "vitest",
-    "test:coverage": "vitest --run --coverage",
+    "build": "tsup",
+    "test": "vitest run",
+    "test:coverage": "npm run test -- --coverage",
     "prettier:check": "prettier -c .",
-    "eslint:check": "eslint"
+    "eslint:check": "npm run eslint",
+    "eslint:fix": "npm run eslint -- --fix",
+    "eslint": "eslint --ignore-path .gitignore ."
   },
   "devDependencies": {
-    "@tsconfig/strictest": "^1.0.2",
-    "@typescript-eslint/eslint-plugin": "^5.54.0",
-    "@typescript-eslint/parser": "^5.54.0",
-    "@vitest/coverage-c8": "^0.29.2",
-    "eslint": "^8.35.0",
+    "@typescript-eslint/eslint-plugin": "^5.55.0",
+    "@typescript-eslint/parser": "^5.55.0",
+    "@vitest/coverage-c8": "^0.29.3",
+    "eslint": "^8.36.0",
+    "eslint-import-resolver-typescript": "^3.5.3",
+    "eslint-plugin-import": "^2.27.5",
     "prettier": "^2.8.4",
     "taze": "^0.9.0",
+    "tsup": "^6.6.3",
     "turbo": "^1.8.3",
     "type-fest": "^3.6.1",
     "typescript": "^4.9.5",
-    "vite": "^4.1.4",
-    "vitest": "^0.29.2"
+    "vite": "^4.2.0",
+    "vitest": "^0.29.3"
   },
   "dependencies": {
-    "observable-to-async-generator": "^1.0.4",
     "rxjs": "^7.8.0"
   }
 }

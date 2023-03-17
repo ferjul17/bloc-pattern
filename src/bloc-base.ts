@@ -8,7 +8,8 @@ import {
   Subscription,
   tap,
 } from 'rxjs';
-import type { Change } from './change';
+
+import type { Change } from './change.js';
 
 export class StateError extends Error {}
 

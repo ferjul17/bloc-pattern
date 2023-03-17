@@ -1,7 +1,8 @@
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { Bloc } from './bloc';
-import { StateError } from './bloc-base';
 import { lastValueFrom, toArray } from 'rxjs';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+
+import { StateError } from './bloc-base.js';
+import { Bloc } from './bloc.js';
 
 class Event {}
 

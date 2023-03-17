@@ -1,6 +1,7 @@
 import { map, Subject } from 'rxjs';
-import { BlocBase } from './bloc-base';
 import type { Class } from 'type-fest';
+
+import { BlocBase } from './bloc-base.js';
 
 export class Bloc<EVENT extends Class<unknown>, STATE> extends BlocBase<STATE> {
   private readonly _event: Subject<InstanceType<EVENT>>;

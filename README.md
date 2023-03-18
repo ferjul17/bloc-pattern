@@ -7,6 +7,7 @@
 ### Installation
 
 You can install this package using npm:
+
 ```
 npm install bloc-pattern
 ```
@@ -55,7 +56,7 @@ bloc.close();
 
 The `Cubit` class provides a simpler way to handle state changes. It takes a single type parameter: `STATE`.
 
-````typescript
+```typescript
 import { Cubit } from 'bloc-pattern';
 
 class Counter extends Cubit<number> {
@@ -75,4 +76,4 @@ cubit.increase(10); // 10
 cubit.decrease(7); // 3
 
 cubit.close();
-````
+```

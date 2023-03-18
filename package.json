@@ -1,7 +1,7 @@
 {
   "type": "module",
   "name": "bloc-pattern",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Bloc Pattern is an package that makes it easier to implement the BLoC (Business Logic Components) pattern in your applications. It provides a clear architecture for managing state and updating data in your applications.",
   "files": [
     "dist"

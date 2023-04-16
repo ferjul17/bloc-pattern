@@ -2,7 +2,7 @@
 
 `bloc-pattern` is an npm package that makes it easier to implement the BLoC (Business Logic Components) pattern in your applications. It provides a clear architecture for managing state and updating data in your applications.
 
-⚠️ Please note that this package is not intended for actual use in production applications. It is simply a means for you to practice publishing a package to npm.
+⚠️ Please note that this package is not intended for actual use in production applications. It is simply a means for me to practice publishing a package to npm.
 
 ### Installation
 
